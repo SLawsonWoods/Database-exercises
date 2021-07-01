@@ -23,7 +23,7 @@ WHEN last_name RLIKE '^(I|J|K|L|M|N|O|P|Q)' THEN 'I-Q'
 WHEN last_name RLIKE '^(R|S|T|U|V|W|X|Y|Z)' THEN 'R-Z' END AS 'alpha_group' 
 FROM employees;
 
--- 3 How many employees (current or previous) were born in each decade?
+-- 3 How many employees (current or previous) were born in each decade? YEP
 
 SELECT COUNT(*),
 CASE 
