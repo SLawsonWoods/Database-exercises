@@ -32,4 +32,24 @@ WHEN birth_date LIKE '196%' THEN '1960s' END AS 'Decade'
 FROM employees
 GROUP BY Decade;
 
+-- BONUS What is the current average salary for each of the following department groups: R&D, Sales & Marketing, Prod & QM, Finance & HR, Customer Service?
+
+SELECT *
+FROM salaries;
+
+SELECT *
+FROM departments;
+
+SELECT 
+(CASE WHEN dept_name = 'Research' THEN 'R&D' 
+      WHEN dept_name = 'Development' THEN 'R&D'
+      WHEN dept_name = 'Finance' THEN 'Finance & HR'
+      WHEN dept_name = 'HR' THEN 'Finance & HR'
+      WHEN dept_name = 
+END) AS 'dept_group'
+FROM departments;
+
+
+
+
 
