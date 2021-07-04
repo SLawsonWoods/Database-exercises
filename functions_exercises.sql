@@ -40,28 +40,29 @@ ORDER BY birth_date, hire_date DESC;
 
 -- FUNCTIONS
 
+-- 2
 SELECT concat(first_name," ", last_name) AS full_name
 FROM employees
 WHERE last_name LIKE 'e%'AND last_name LIKE '%e';
--- 2
 
-SELECT upper(concat(first_name," ", last_name)) AS full_name
-FROM employees;
 -- 3
-
-SELECT first_name, last_name, hire_date, birth_date, datediff('hire_date','curdate')
+SELECT upper(concat(first_name," ", last_name)) AS full_name
 FROM employees
-WHERE hire_date LIKE "19%%" AND birth_date LIKE '%-12-25';
+WHERE last_name LIKE 'e%'AND last_name LIKE '%e';
+
 -- 4
+SELECT first_name, last_name, hire_date, birth_date, datediff('NOW()','hire_date')
+FROM employees
+WHERE hire_date LIKE "199%" AND birth_date LIKE '%-12-25';
 
 SELECT *
 FROM salaries;
 
+-- 5
 SELECT min(salary), max(salary)
 FROM salaries;
--- 5
 
-SELECT lower(concat(substr(first_name, 1, 1),substr(last_name,1, 4),"_",substr(birth_date,6,2),substr(birth_date, 2,2))), first_name, last_name, birth_date 
-FROM employees;
 -- 6
+SELECT lower(concat(substr(first_name, 1, 1),substr(last_name,1, 4),"_",substr(birth_date,6,2),substr(birth_date, 2,2))) AS username, first_name, last_name, birth_date 
+FROM employees;
 
