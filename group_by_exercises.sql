@@ -1,14 +1,15 @@
 USE employees;
 
+-- 2 There have been 7 titles
 SELECT DISTINCT title
 FROM titles;
--- 2
 
+-- 3
 SELECT last_name
 FROM employees
 WHERE last_name LIKE 'e%' AND last_name LIKE '%e'
 GROUP BY last_name;
--- 3
+
 
 SELECT last_name, first_name
 FROM employees
@@ -16,17 +17,16 @@ WHERE last_name LIKE 'e%' AND last_name LIKE '%e'
 GROUP BY last_name, first_name;
 -- 4
 
-SELECT last_name
-FROM employees
-WHERE last_name LIKE '%q%' AND last_name NOT LIKE '%qu%'
-GROUP BY last_name;
 -- 5 Chelq, Lindqvist, Qiwen
+SELECT DISTINCT last_name
+FROM employees
+WHERE last_name LIKE '%q%' AND last_name NOT LIKE '%qu%';
 
+-- 6 Chleq = 189, Lindqvist = 190, Qiwen = 168
 SELECT last_name, COUNT(*)
 FROM employees
 WHERE last_name LIKE '%q%' AND last_name NOT LIKE '%qu%'
 GROUP BY last_name;
--- 6 Chleq = 189, Lindqvist = 190, Qiwen = 168
 
 SELECT first_name, gender, COUNT(*)
 FROM employees
