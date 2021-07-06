@@ -27,12 +27,11 @@ FROM employees
 WHERE last_name LIKE '%q%' AND last_name NOT LIKE '%qu%'
 GROUP BY last_name;
 
--- 7 
 SELECT first_name, gender, COUNT(*)
 FROM employees
 WHERE first_name IN ('Irena', 'Vidya','Maya')
 GROUP BY first_name, gender;
-
+-- 7 
 
 
 SELECT lower(concat(substr(first_name, 1, 1),substr(last_name,1, 4),"_",substr(birth_date,6,2),substr(birth_date, 2,2))) AS username, first_name, last_name, birth_date, COUNT(*) 
