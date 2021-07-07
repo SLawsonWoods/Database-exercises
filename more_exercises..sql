@@ -1,21 +1,80 @@
+-- 1 How much do the current managers of each department get paid, relative to the average salary for the department? Is there any department where the department manager gets paid less than the average salary? ANSWER All department managers make more than the average department salary. No none get paid less than average department salary.
+
 USE employees;
 
-SELECT *
-FROM titles;
-
-SELECT *
-FROM dept_manager;
-
-SELECT *
-FROM departments;
-
-
-SELECT salary
+-- This gives you average salary by department
+SELECT avg(salary), dept_name
 FROM salaries
-WHERE emp_no IN (
-      SELECT emp_no
-         FROM dept_manager
-)
-JOIN departments USING(`dept_no`);
+JOIN dept_manager USING(emp_no)
+JOIN departments USING(dept_no)
+GROUP BY dept_name;
+
+SELECT avg(salary), dept_name
+FROM salaries
+WHERE emp_no IN 
+JOIN dept_manager USING(emp_no)
+JOIN departments USING(dept_no)
+GROUP BY dept_name;
+
+USE employees;
+
+CREATE TEMPORARY TABLE germain_1481.dep_manager_salaries AS
+SELECT first_name, last_name, salary, dept_name 
+FROM employees
+JOIN dept_manager USING(emp_no)
+JOIN salaries USING(emp_no)
+JOIN departments USING(dept_no)
+WHERE salaries.to_date > NOW();
+
+USE germain_1481;
+
+SELECT *
+FROM dep_manager_salaries
+ORDER BY salary;
+
+USE employees;
+
+Create temporary table germain_1481.average_dept_salary AS
+SELECT AVG(salary), dept_name
+FROM salaries
+JOIN dept_manager USING(emp_no)
+JOIN departments USING(dept_no)
+GROUP BY dept_name;
+
+SELECT * 
+FROM average_dept_salary;
+
+SELECT *
+FROM dep_manager_salaries
+JOIN average_dept_salary USING(dept_name)
+ORDER BY salary;
+
+-- 2 What languages are spoken in Santa Monica?
+USE world;
+
+SELECT *
+FROM city
+ORDER BY name;
+
+SELECT *
+FROM countrylanguage;
+
+SELECT * 
+FROM country;
+
+SELECT language, percentage
+FROM city
+JOIN countrylanguage USING(countryCode)
+WHERE name = 'Santa Monica';
+
+-- 3 How many different countries are in each region?
+
+SELECT count(code),region
+FROM country
+GROUP BY region;
+
+
+
+
 
 

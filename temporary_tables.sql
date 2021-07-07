@@ -15,6 +15,7 @@ JOIN employees.dept_emp USING(emp_no)
 JOIN employees.departments USING(dept_no)
 WHERE employees.dept_emp.to_date > NOW();
 
+
 -- 1a-b Add a column named full_name to this table. It should be a VARCHAR whose length is the sum of the lengths of the first name and last name columns
 
 SELECT * 
@@ -86,3 +87,27 @@ WHERE dept_emp.to_date > NOW()
 GROUP BY dept_name
 ORDER BY avg(salary);
 -- Sales, Marketing, and Finance are the only 3 departments that average more than the company average.  THe other 6 departments make less.  The best department to work in is Sales and the worst is Human Resources.
+USE employees;
+USE germain_1481;
+
+create temporary table germain_1481.employees_with_departments
+Select first_name, last_name, dept_name, concat(first_name, ' 'last_name) AS full_name
+FROM employees
+JOIN dept_emp USING(emp_no)
+JOIN departments USING(dept_no)
+WHERE to_date > NOW();
+
+USE germain_1481;
+
+SELECT * 
+FROM employees_with_departments;
+
+-- How ryan did it
+-- historic average salary 63810 
+-- 16904 historic standard deviation
+-- for each = group by
+USE ryan;
+
+select avg(salary), std(salary) AS (std_salary
+from employees.salaries);
+
