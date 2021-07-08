@@ -1,1 +1,2 @@
 practicing sql 
+# python-exercises
