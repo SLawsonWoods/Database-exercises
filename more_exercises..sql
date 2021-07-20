@@ -73,6 +73,52 @@ SELECT count(code),region
 FROM country
 GROUP BY region;
 
+-- 4 What is the population for each region?
+
+SELECT region, population
+FROM country
+GROUP BY region, population;
+
+-- 5 What is the population for each continent?
+
+SELECT continent, population
+FROM country
+ORDER BY continent ASC;
+
+-- 6 What is the average life expectancy for each region, each continent? Sort the results from shortest to longest
+
+SELECT continent, lifeexpectancy
+FROM country
+ORDER BY lifeexpectancy;
+
+SELECT lifeexpectancy, region
+FROM country
+ORDER BY lifeexpectancy;
+
+-- BONUS A Find all the countries whose local name is different from the official name
+
+SELECT name, localname
+FROM country
+WHERE name != localname;
+
+-- BONUS B How many countries have a life expectancy less than 70? 110
+
+SELECT lifeexpectancy,name
+FROM country
+WHERE lifeexpectancy < 70
+GROUP BY name, lifeexpectancy;
+
+-- BONUS C What state is city x located in?
+
+SELECT *
+FROM city;
+
+
+
+
+
+
+
 
 
 
